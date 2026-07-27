@@ -489,7 +489,7 @@
     const willHide = !elements.filterPanel.hidden;
     elements.filterPanel.hidden = willHide;
     elements.filterToggle.setAttribute("aria-expanded", String(!willHide));
-    elements.filterToggle.textContent = willHide ? "Show filters" : "Filters";
+    elements.filterToggle.textContent = willHide ? "Show filters" : "Hide filters";
   }
 
   async function resetDataset() {
