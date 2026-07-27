@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102a43">
+  <meta name="description"
+    content="A public Germany university application tracker with temporary editing, filtering, sorting and filtered PDF export.">
+  <title>Germany University Application Tracker</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#programTable">Skip to programs</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div>
+        <p class="eyebrow">Application workspace</p>
+        <h1>Germany University Application Tracker</h1>
+        <p class="header-copy">Search, filter, sort and temporarily update programs. Export only the currently visible results as a PDF.</p>
+      </div>
+      <div class="save-panel" aria-live="polite">
+        <span class="status-dot" aria-hidden="true"></span>
+        <div>
+          <strong id="saveStatus">Loading data…</strong>
+          <span id="fileStatus">Temporary session</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section class="stats-grid" aria-label="Tracker summary">
+      <article class="stat-card">
+        <span>Programs</span>
+        <strong id="programCount">0</strong>
+        <small id="visibleCount">0 visible</small>
+      </article>
+      <article class="stat-card">
+        <span>Free tuition</span>
+        <strong id="freeTuitionCount">0</strong>
+        <small>Tuition fee is €0</small>
+      </article>
+      <article class="stat-card">
+        <span>Applied</span>
+        <strong id="appliedCount">0</strong>
+        <small id="appliedPercent">0% complete</small>
+      </article>
+      <article class="stat-card">
+        <span>VPD required</span>
+        <strong id="vpdCount">0</strong>
+        <small>Marked “Yes”</small>
+      </article>
+    </section>
+
+    <section class="workspace-card controls-card" aria-labelledby="controlsTitle">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Live controls</p>
+          <h2 id="controlsTitle">Find and manage programs</h2>
+        </div>
+        <div class="action-bar">
+          <button class="button button-primary" id="addProgramButton" type="button">+ Add program</button>
+          <button class="button" id="exportButton" type="button">Export PDF</button>
+          <button class="button button-danger-quiet" id="resetDataButton" type="button">Reset temporary changes</button>
+        </div>
+      </div>
+
+      <p class="session-note">Changes made here are temporary and reset when the page is refreshed. PDF export uses only the currently visible filtered results.</p>
+
+      <div class="primary-controls">
+        <label class="search-control">
+          <span>Search all fields</span>
+          <input id="searchInput" type="search" placeholder="University, course, portal, ranking…" autocomplete="off">
+        </label>
+        <label>
+          <span>Sort by</span>
+          <select id="sortField">
+            <option value="applicationStartDate">Application start date</option>
+            <option value="applicationEndDate">Application end date</option>
+            <option value="universityName">University name</option>
+            <option value="courseName">Course name</option>
+            <option value="applicationFee">Application fee</option>
+            <option value="tuitionFee">Tuition fee</option>
+          </select>
+        </label>
+        <label>
+          <span>Order</span>
+          <select id="sortDirection">
+            <option value="asc">Low / early / A–Z</option>
+            <option value="desc">High / late / Z–A</option>
+          </select>
+        </label>
+        <button class="button filter-toggle" id="filterToggle" type="button" aria-expanded="true"
+          aria-controls="filterPanel">Filters</button>
+      </div>
+
+      <div class="filter-panel" id="filterPanel">
+        <label>
+          <span>University</span>
+          <select id="universityFilter">
+            <option value="">All universities</option>
+          </select>
+        </label>
+        <label>
+          <span>Intake</span>
+          <select id="intakeFilter">
+            <option value="">All intakes</option>
+          </select>
+        </label>
+        <label>
+          <span>Portal</span>
+          <select id="portalFilter">
+            <option value="">All portals</option>
+          </select>
+        </label>
+        <label>
+          <span>VPD</span>
+          <select id="vpdFilter">
+            <option value="">All VPD statuses</option>
+          </select>
+        </label>
+        <label>
+          <span>MOI</span>
+          <select id="moiFilter">
+            <option value="">All MOI statuses</option>
+          </select>
+        </label>
+        <label>
+          <span>Admission</span>
+          <select id="restrictedFilter">
+            <option value="">All restrictions</option>
+          </select>
+        </label>
+        <label>
+          <span>Application fee</span>
+          <select id="feeTypeFilter">
+            <option value="">All fee types</option>
+            <option value="free">Free only</option>
+            <option value="paid">Paid only</option>
+            <option value="unknown">Unknown only</option>
+          </select>
+        </label>
+        <label>
+          <span>Minimum fee (€)</span>
+          <input id="feeMin" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0">
+        </label>
+        <label>
+          <span>Maximum fee (€)</span>
+          <input id="feeMax" type="number" min="0" step="0.01" inputmode="decimal" placeholder="1500">
+        </label>
+        <label>
+          <span>Start date from</span>
+          <input id="startDateFrom" type="date">
+        </label>
+        <label>
+          <span>Start date to</span>
+          <input id="startDateTo" type="date">
+        </label>
+        <label>
+          <span>Application status</span>
+          <select id="appliedFilter">
+            <option value="">All statuses</option>
+            <option value="applied">Applied</option>
+            <option value="not-applied">Not applied</option>
+          </select>
+        </label>
+        <div class="filter-actions">
+          <button class="button" id="clearFiltersButton" type="button">Clear filters</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="workspace-card table-card" aria-labelledby="tableTitle">
+      <div class="table-toolbar">
+        <div>
+          <p class="eyebrow">Programs database</p>
+          <h2 id="tableTitle">Application list</h2>
+        </div>
+        <p id="resultSummary" class="result-summary" aria-live="polite"></p>
+      </div>
+
+      <div class="table-wrap">
+        <table id="programTable">
+          <thead>
+            <tr>
+              <th scope="col"><button class="sort-button" data-sort="universityName">University</button></th>
+              <th scope="col"><button class="sort-button" data-sort="courseName">Course</button></th>
+              <th scope="col">Intake</th>
+              <th scope="col"><button class="sort-button" data-sort="applicationStartDate">Start date</button></th>
+              <th scope="col"><button class="sort-button" data-sort="applicationEndDate">End date</button></th>
+              <th scope="col">Portal</th>
+              <th scope="col">VPD</th>
+              <th scope="col">MOI</th>
+              <th scope="col"><button class="sort-button" data-sort="tuitionFee">Tuition fee</button></th>
+              <th scope="col">Exam / interview</th>
+              <th scope="col"><button class="sort-button" data-sort="applicationFee">Application fee</button></th>
+              <th scope="col">Applied</th>
+              <th scope="col">QS ranking</th>
+              <th scope="col">GRE / GMAT</th>
+              <th scope="col">Restricted</th>
+              <th scope="col">Link</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="programTableBody"></tbody>
+        </table>
+        <div class="empty-state" id="emptyState" hidden>
+          <strong>No matching programs</strong>
+          <p>Change or clear the filters to show records again.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Maintained and Developed by Boishik Barua Tinu</p>
+  </footer>
+
+  <dialog id="programDialog" class="program-dialog">
+    <form id="programForm" novalidate>
+      <div class="dialog-header">
+        <div>
+          <p class="eyebrow">Program record</p>
+          <h2 id="dialogTitle">Add program</h2>
+        </div>
+        <button class="icon-button" id="closeDialogButton" type="button" aria-label="Close">×</button>
+      </div>
+
+      <input type="hidden" name="id">
+      <div class="form-grid">
+        <label class="span-2">
+          <span>University name *</span>
+          <input name="universityName" required>
+        </label>
+        <label class="span-2">
+          <span>Course name *</span>
+          <input name="courseName" required>
+        </label>
+        <label>
+          <span>Intake</span>
+          <input name="intake" list="intakeOptions">
+        </label>
+        <label>
+          <span>Application portal</span>
+          <input name="applicationPortal" list="portalOptions">
+        </label>
+        <label>
+          <span>Application start date</span>
+          <input name="applicationStartDate" type="date">
+        </label>
+        <label>
+          <span>Application end date</span>
+          <input name="applicationEndDate" type="date">
+        </label>
+        <label>
+          <span>VPD required</span>
+          <input name="vpdRequired" list="vpdOptions">
+        </label>
+        <label>
+          <span>MOI accepted</span>
+          <input name="moiAccepted" list="moiOptions">
+        </label>
+        <label>
+          <span>Tuition fee (€)</span>
+          <input name="tuitionFee" type="number" min="0" step="0.01" placeholder="0 means Free">
+        </label>
+        <label>
+          <span>Application fee (€)</span>
+          <input name="applicationFee" type="number" min="0" step="0.01" placeholder="0 means Free">
+        </label>
+        <label class="span-2">
+          <span>Entrance exam / interview</span>
+          <input name="entranceExamInterview">
+        </label>
+        <label>
+          <span>GRE / GMAT</span>
+          <input name="greGmat">
+        </label>
+        <label>
+          <span>QS ranking</span>
+          <input name="qsRanking">
+        </label>
+        <label>
+          <span>Restricted</span>
+          <input name="restricted" list="restrictedOptions">
+        </label>
+        <label>
+          <span>Applied</span>
+          <span class="checkbox-field"><input name="applied" type="checkbox"> Mark as applied</span>
+        </label>
+        <label class="span-2">
+          <span>Application link</span>
+          <input name="applicationLink" type="url" placeholder="https://…">
+        </label>
+      </div>
+
+      <datalist id="intakeOptions">
+        <option value="Summer">
+        <option value="Winter">
+      </datalist>
+      <datalist id="portalOptions">
+        <option value="Uni-Assist">
+        <option value="University Portal">
+        <option value="Other">
+      </datalist>
+      <datalist id="vpdOptions">
+        <option value="Yes">
+        <option value="No">
+        <option value="Other">
+        <option value="-">
+      </datalist>
+      <datalist id="moiOptions">
+        <option value="yes">
+        <option value="no">
+        <option value="Not mentioned">
+      </datalist>
+      <datalist id="restrictedOptions">
+        <option value="NC">
+        <option value="No-NC">
+        <option value="-">
+      </datalist>
+
+      <div class="dialog-actions">
+        <button class="button" id="cancelDialogButton" type="button">Cancel</button>
+        <button class="button button-primary" type="submit">Save program</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="seed-data.js"></script>
+  <script src="filters.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>

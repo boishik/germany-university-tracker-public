@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">Germany University Tracker</title>
+  <rect width="128" height="128" rx="24" fill="#102a43"/>
+  <path d="M24 46 64 24l40 22-40 22-40-22Z" fill="#8fe3eb"/>
+  <path d="M36 60v25c0 11 13 19 28 19s28-8 28-19V60L64 76 36 60Z" fill="#ffffff"/>
+  <path d="M103 48v31" stroke="#8fe3eb" stroke-width="7" stroke-linecap="round"/>
+</svg>

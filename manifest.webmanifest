@@ -1,0 +1,18 @@
+{
+  "name": "Germany University Application Tracker",
+  "short_name": "Uni Tracker",
+  "description": "Public Germany university tracker with temporary editing, filtering, sorting and filtered PDF export.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#eef3f7",
+  "theme_color": "#102a43",
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
