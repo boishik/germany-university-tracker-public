@@ -34,7 +34,7 @@
       "saveStatus", "fileStatus", "programCount", "visibleCount", "freeTuitionCount", "appliedCount", "appliedPercent", "vpdCount",
       "addProgramButton", "exportButton", "resetDataButton",
       "searchInput", "sortField", "sortDirection", "filterToggle", "filterPanel", "universityFilter", "intakeFilter", "portalFilter",
-      "vpdFilter", "moiFilter", "restrictedFilter", "feeTypeFilter", "feeMin", "feeMax", "startDateFrom", "startDateTo", "appliedFilter",
+      "vpdFilter", "moiFilter", "restrictedFilter", "feeTypeFilter", "tuitionFeeMin", "tuitionFeeMax", "startDateFrom", "startDateTo", "appliedFilter",
       "clearFiltersButton", "programTable", "programTableBody", "emptyState", "resultSummary", "programDialog", "programForm", "dialogTitle",
       "closeDialogButton", "cancelDialogButton", "toastRegion"
     ];
@@ -45,7 +45,7 @@
     const liveControls = [
       elements.searchInput, elements.sortField, elements.sortDirection, elements.universityFilter, elements.intakeFilter,
       elements.portalFilter, elements.vpdFilter, elements.moiFilter, elements.restrictedFilter, elements.feeTypeFilter,
-      elements.feeMin, elements.feeMax, elements.startDateFrom, elements.startDateTo, elements.appliedFilter
+      elements.tuitionFeeMin, elements.tuitionFeeMax, elements.startDateFrom, elements.startDateTo, elements.appliedFilter
     ];
     liveControls.forEach((control) => control.addEventListener(control.tagName === "INPUT" ? "input" : "change", render));
 
@@ -162,8 +162,8 @@
       moi: elements.moiFilter.value,
       restricted: elements.restrictedFilter.value,
       feeType: elements.feeTypeFilter.value,
-      feeMin: elements.feeMin.value,
-      feeMax: elements.feeMax.value,
+      tuitionFeeMin: elements.tuitionFeeMin.value,
+      tuitionFeeMax: elements.tuitionFeeMax.value,
       startFrom: elements.startDateFrom.value,
       startTo: elements.startDateTo.value,
       applied: elements.appliedFilter.value,
@@ -479,7 +479,7 @@
   }
 
   function clearFilters() {
-    [elements.searchInput, elements.feeMin, elements.feeMax, elements.startDateFrom, elements.startDateTo].forEach((input) => { input.value = ""; });
+    [elements.searchInput, elements.tuitionFeeMin, elements.tuitionFeeMax, elements.startDateFrom, elements.startDateTo].forEach((input) => { input.value = ""; });
     [elements.universityFilter, elements.intakeFilter, elements.portalFilter, elements.vpdFilter, elements.moiFilter, elements.restrictedFilter, elements.feeTypeFilter, elements.appliedFilter]
       .forEach((select) => { select.value = ""; });
     render();
@@ -489,7 +489,7 @@
     const willHide = !elements.filterPanel.hidden;
     elements.filterPanel.hidden = willHide;
     elements.filterToggle.setAttribute("aria-expanded", String(!willHide));
-    elements.filterToggle.textContent = willHide ? "Show filters" : "Hide filters";
+    elements.filterToggle.textContent = willHide ? "Show Filters" : "Hide Filters";
   }
 
   async function resetDataset() {
@@ -695,8 +695,12 @@
     appendSelectedFilter(parts, elements.moiFilter, "MOI");
     appendSelectedFilter(parts, elements.restrictedFilter, "Admission");
     appendSelectedFilter(parts, elements.feeTypeFilter, "Application fee");
-    if (criteria.feeMin) parts.push(`Minimum fee = EUR ${criteria.feeMin}`);
-    if (criteria.feeMax) parts.push(`Maximum fee = EUR ${criteria.feeMax}`);
+    if (criteria.tuitionFeeMin) {
+      parts.push(`Minimum tuition fee = EUR ${criteria.tuitionFeeMin}`);
+    }
+    if (criteria.tuitionFeeMax) {
+      parts.push(`Maximum tuition fee = EUR ${criteria.tuitionFeeMax}`);
+    }
     if (criteria.startFrom) parts.push(`Start from = ${criteria.startFrom}`);
     if (criteria.startTo) parts.push(`Start to = ${criteria.startTo}`);
     appendSelectedFilter(parts, elements.appliedFilter, "Application status");

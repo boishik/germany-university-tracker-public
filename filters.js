@@ -39,8 +39,14 @@
 
   function filterPrograms(programs, criteria) {
     const query = normalize(criteria.query);
-    const feeMin = criteria.feeMin === "" ? null : Number(criteria.feeMin);
-    const feeMax = criteria.feeMax === "" ? null : Number(criteria.feeMax);
+    const parseOptionalNumber = (value) => {
+      if (value === "" || value === null || value === undefined) return null;
+      const parsed = Number(value);
+      return Number.isFinite(parsed) ? parsed : null;
+    };
+
+    const tuitionFeeMin = parseOptionalNumber(criteria.tuitionFeeMin);
+    const tuitionFeeMax = parseOptionalNumber(criteria.tuitionFeeMax);
 
     return programs.filter((program) => {
       if (query) {
@@ -65,8 +71,15 @@
       if (criteria.feeType === "paid" && !(typeof program.applicationFee === "number" && program.applicationFee > 0)) return false;
       if (criteria.feeType === "unknown" && program.applicationFee !== null) return false;
 
-      if (feeMin !== null && (program.applicationFee === null || program.applicationFee < feeMin)) return false;
-      if (feeMax !== null && (program.applicationFee === null || program.applicationFee > feeMax)) return false;
+      if (
+        tuitionFeeMin !== null &&
+        (program.tuitionFee === null || program.tuitionFee < tuitionFeeMin)
+      ) return false;
+
+      if (
+        tuitionFeeMax !== null &&
+        (program.tuitionFee === null || program.tuitionFee > tuitionFeeMax)
+      ) return false;
 
       if (criteria.startFrom && (!program.applicationStartDate || program.applicationStartDate < criteria.startFrom)) return false;
       if (criteria.startTo && (!program.applicationStartDate || program.applicationStartDate > criteria.startTo)) return false;
