@@ -355,6 +355,17 @@ input::placeholder {
   display: none;
 }
 
+.filter-panel > label {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.filter-panel > label > input,
+.filter-panel > label > select {
+  margin-top: auto;
+}
+
 .filter-actions {
   display: flex;
   align-items: end;
