@@ -21,8 +21,7 @@
       <div>
         <p class="eyebrow">Application workspace</p>
         <h1>Germany University Application Tracker</h1>
-        <p class="header-copy">Search, filter, sort and temporarily update programs. Export only the currently visible
-          results as a PDF.</p>
+        <p class="header-copy">Search, filter, sort and temporarily update programs. Export only the currently visible results as a PDF.</p>
       </div>
       <div class="save-panel" aria-live="polite">
         <span class="status-dot" aria-hidden="true"></span>
@@ -71,8 +70,7 @@
         </div>
       </div>
 
-      <p class="session-note">Changes made here are temporary and reset when the page is refreshed. PDF export uses only
-        the currently visible filtered results.</p>
+      <p class="session-note">Changes made here are temporary and reset when the page is refreshed. PDF export uses only the currently visible filtered results.</p>
 
       <div class="primary-controls">
         <label class="search-control">
@@ -183,11 +181,19 @@
           <p class="eyebrow">Programs database</p>
           <h2 id="tableTitle">Application list</h2>
         </div>
-        <p id="resultSummary" class="result-summary" aria-live="polite"></p>
+
+        <div class="table-toolbar-meta">
+          <p id="resultSummary" class="result-summary" aria-live="polite"></p>
+          <div class="table-scroll-hint" id="tableScrollHint" aria-hidden="true">
+            <span>More columns</span>
+            <span class="table-scroll-hint-arrow">→</span>
+          </div>
+        </div>
       </div>
 
-      <div class="table-wrap">
-        <table id="programTable">
+      <div class="table-scroll-shell">
+        <div class="table-wrap" id="programTableWrap">
+          <table id="programTable">
           <thead>
             <tr>
               <th scope="col"><button class="sort-button" data-sort="universityName">University</button></th>
@@ -211,10 +217,13 @@
           </thead>
           <tbody id="programTableBody"></tbody>
         </table>
-        <div class="empty-state" id="emptyState" hidden>
-          <strong>No matching programs</strong>
-          <p>Change or clear the filters to show records again.</p>
+          <div class="empty-state" id="emptyState" hidden>
+            <strong>No matching programs</strong>
+            <p>Change or clear the filters to show records again.</p>
+          </div>
         </div>
+
+        <div class="table-edge-fade" id="tableEdgeFade" aria-hidden="true"></div>
       </div>
     </section>
   </main>
@@ -339,9 +348,6 @@
   <script src="seed-data.js"></script>
   <script src="filters.js"></script>
   <script src="app.js"></script>
-  <!-- Cloudflare Web Analytics -->
-  <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js'
-    data-cf-beacon='{"token": "d1cc9fe3aeb4475698350ee0f2efc1c4"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 
 </html>

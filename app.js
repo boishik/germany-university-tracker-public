@@ -35,7 +35,7 @@
       "addProgramButton", "exportButton", "resetDataButton",
       "searchInput", "sortField", "sortDirection", "filterToggle", "filterPanel", "universityFilter", "intakeFilter", "portalFilter",
       "vpdFilter", "moiFilter", "restrictedFilter", "feeTypeFilter", "tuitionFeeMin", "tuitionFeeMax", "startDateFrom", "startDateTo", "appliedFilter",
-      "clearFiltersButton", "programTable", "programTableBody", "emptyState", "resultSummary", "programDialog", "programForm", "dialogTitle",
+      "clearFiltersButton", "programTableWrap", "tableScrollHint", "tableEdgeFade", "programTable", "programTableBody", "emptyState", "resultSummary", "programDialog", "programForm", "dialogTitle",
       "closeDialogButton", "cancelDialogButton", "toastRegion"
     ];
     ids.forEach((id) => { elements[id] = document.getElementById(id); });
@@ -60,6 +60,9 @@
     elements.closeDialogButton.addEventListener("click", closeProgramDialog);
     elements.cancelDialogButton.addEventListener("click", closeProgramDialog);
     elements.programDialog.addEventListener("cancel", (event) => { event.preventDefault(); closeProgramDialog(); });
+
+    elements.programTableWrap.addEventListener("scroll", updateTableScrollHint, { passive: true });
+    window.addEventListener("resize", updateTableScrollHint);
   }
 
   async function loadDataset() {
@@ -178,6 +181,24 @@
     renderStats(visiblePrograms.length);
     renderTable(visiblePrograms);
     renderSortIndicators();
+    requestAnimationFrame(updateTableScrollHint);
+  }
+
+  function updateTableScrollHint() {
+    const wrap = elements.programTableWrap;
+    const hint = elements.tableScrollHint;
+    const fade = elements.tableEdgeFade;
+
+    if (!wrap || !hint || !fade) return;
+
+    const maximumScrollLeft = Math.max(0, wrap.scrollWidth - wrap.clientWidth);
+    const hasHiddenColumnsOnRight =
+      maximumScrollLeft > 2 &&
+      wrap.scrollLeft < maximumScrollLeft - 2 &&
+      !elements.programTable.hidden;
+
+    hint.classList.toggle("is-visible", hasHiddenColumnsOnRight);
+    fade.classList.toggle("is-visible", hasHiddenColumnsOnRight);
   }
 
   function renderStats(visibleLength) {
