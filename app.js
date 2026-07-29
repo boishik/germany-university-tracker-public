@@ -1,6 +1,26 @@
 (function () {
   "use strict";
 
+  const GUEST_STORAGE_KEY = "germany-university-tracker.guest-profile.v1";
+  const GUEST_STORAGE_VERSION = 1;
+  const PROGRAM_FIELDS = [
+    "universityName",
+    "courseName",
+    "intake",
+    "applicationStartDate",
+    "applicationEndDate",
+    "applicationPortal",
+    "vpdRequired",
+    "moiAccepted",
+    "tuitionFee",
+    "entranceExamInterview",
+    "greGmat",
+    "applied",
+    "qsRanking",
+    "applicationFee",
+    "restricted",
+    "applicationLink",
+  ];
 
   const state = {
     programs: [],
@@ -9,6 +29,8 @@
     sortField: "applicationStartDate",
     sortDirection: "asc",
     editingId: null,
+    storageAvailable: true,
+    storageErrorShown: false,
   };
 
   const elements = {};
@@ -20,12 +42,36 @@
   async function init() {
     cacheElements();
     bindEvents();
-    const dataset = await loadDataset();
-    state.originalDataset = structuredCloneSafe(dataset);
-    applyDataset(dataset);
+
+    const publishedDataset = normalizeDataset(await loadPublishedDataset());
+    state.originalDataset = structuredCloneSafe(publishedDataset);
+
+    const savedCustomizations = loadGuestCustomizations();
+    const activeDataset = savedCustomizations
+      ? applyGuestCustomizations(publishedDataset, savedCustomizations)
+      : publishedDataset;
+
+    applyDataset(activeDataset);
     populateFilterOptions();
     render();
-    updateSaveStatus("Temporary session", "Changes reset when the page refreshes");
+
+    if (!state.storageAvailable) {
+      updateSaveStatus(
+        "Browser saving unavailable",
+        "Changes will last only until this page is closed"
+      );
+    } else if (savedCustomizations && hasGuestCustomizations(savedCustomizations)) {
+      updateSaveStatus(
+        "Personal data restored",
+        "Saved privately in this browser"
+      );
+    } else {
+      updateSaveStatus(
+        "Browser saving ready",
+        "Changes stay private to this browser"
+      );
+    }
+
     disableServiceWorkerAndCaches();
   }
 
@@ -65,17 +111,160 @@
     window.addEventListener("resize", updateTableScrollHint);
   }
 
-  async function loadDataset() {
+  async function loadPublishedDataset() {
     try {
       const response = await fetch("data.json", { cache: "no-store" });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return await response.json();
     } catch (error) {
-      if (window.TRACKER_SEED_DATA) return structuredCloneSafe(window.TRACKER_SEED_DATA);
+      if (window.TRACKER_SEED_DATA) {
+        return structuredCloneSafe(window.TRACKER_SEED_DATA);
+      }
       throw new Error("No tracker data could be loaded.");
     }
   }
 
+  function loadGuestCustomizations() {
+    let raw;
+
+    try {
+      raw = window.localStorage.getItem(GUEST_STORAGE_KEY);
+      state.storageAvailable = true;
+    } catch (error) {
+      state.storageAvailable = false;
+      console.warn("Browser storage is unavailable", error);
+      return null;
+    }
+
+    if (!raw) return null;
+
+    try {
+      const parsed = JSON.parse(raw);
+      if (
+        !parsed ||
+        Number(parsed.version) !== GUEST_STORAGE_VERSION ||
+        typeof parsed.overrides !== "object" ||
+        !Array.isArray(parsed.deletedIds) ||
+        !Array.isArray(parsed.customPrograms)
+      ) {
+        throw new Error("Unsupported guest-data format.");
+      }
+
+      return {
+        version: GUEST_STORAGE_VERSION,
+        savedAt: cleanText(parsed.savedAt),
+        overrides: parsed.overrides || {},
+        deletedIds: parsed.deletedIds.map(cleanText).filter(Boolean),
+        customPrograms: parsed.customPrograms.map(normalizeProgram),
+      };
+    } catch (error) {
+      console.warn("Saved guest data could not be read", error);
+      try {
+        window.localStorage.removeItem(GUEST_STORAGE_KEY);
+      } catch (_) {
+        // Ignore cleanup errors; storage availability is handled elsewhere.
+      }
+      showToast(
+        "Saved browser data was invalid, so the latest public list was loaded.",
+        true
+      );
+      return null;
+    }
+  }
+
+  function applyGuestCustomizations(publishedDataset, customizations) {
+    const base = normalizeDataset(publishedDataset);
+    const deletedIds = new Set(customizations.deletedIds);
+    const baseIds = new Set(base.programs.map((program) => program.id));
+
+    const programs = base.programs
+      .filter((program) => !deletedIds.has(program.id))
+      .map((program) => {
+        const override = customizations.overrides[program.id];
+        return override
+          ? normalizeProgram({ ...program, ...override })
+          : normalizeProgram(program);
+      });
+
+    customizations.customPrograms.forEach((program) => {
+      if (!baseIds.has(program.id) && !deletedIds.has(program.id)) {
+        programs.push(normalizeProgram(program));
+      }
+    });
+
+    return {
+      schemaVersion: base.schemaVersion,
+      title: base.title,
+      currency: base.currency,
+      programs,
+    };
+  }
+
+  function buildGuestCustomizations() {
+    const base = normalizeDataset(
+      state.originalDataset || window.TRACKER_SEED_DATA || { programs: [] }
+    );
+    const baseMap = new Map(base.programs.map((program) => [program.id, program]));
+    const currentMap = new Map(state.programs.map((program) => [program.id, program]));
+    const overrides = {};
+    const customPrograms = [];
+
+    state.programs.forEach((program) => {
+      const original = baseMap.get(program.id);
+
+      if (!original) {
+        customPrograms.push(normalizeProgram(program));
+        return;
+      }
+
+      const patch = {};
+      PROGRAM_FIELDS.forEach((field) => {
+        if (!valuesEqual(program[field], original[field])) {
+          patch[field] = program[field];
+        }
+      });
+
+      if (Object.keys(patch).length) {
+        overrides[program.id] = patch;
+      }
+    });
+
+    const deletedIds = base.programs
+      .filter((program) => !currentMap.has(program.id))
+      .map((program) => program.id);
+
+    return {
+      version: GUEST_STORAGE_VERSION,
+      savedAt: new Date().toISOString(),
+      overrides,
+      deletedIds,
+      customPrograms,
+    };
+  }
+
+  function hasGuestCustomizations(customizations) {
+    return Boolean(
+      Object.keys(customizations?.overrides || {}).length ||
+      customizations?.deletedIds?.length ||
+      customizations?.customPrograms?.length
+    );
+  }
+
+  function valuesEqual(left, right) {
+    return JSON.stringify(left ?? null) === JSON.stringify(right ?? null);
+  }
+
+  function clearGuestCustomizations() {
+    try {
+      window.localStorage.removeItem(GUEST_STORAGE_KEY);
+      state.storageAvailable = true;
+      return true;
+    } catch (error) {
+      state.storageAvailable = false;
+      console.warn("Could not clear browser-saved guest data", error);
+      return false;
+    }
+  }
 
   function applyDataset(payload) {
     const normalized = normalizeDataset(payload);
@@ -146,7 +335,46 @@
   }
 
   function persistDataset() {
-    updateSaveStatus("Temporary changes", "Changes reset when the page refreshes");
+    const customizations = buildGuestCustomizations();
+
+    try {
+      if (hasGuestCustomizations(customizations)) {
+        window.localStorage.setItem(
+          GUEST_STORAGE_KEY,
+          JSON.stringify(customizations)
+        );
+      } else {
+        window.localStorage.removeItem(GUEST_STORAGE_KEY);
+      }
+
+      state.storageAvailable = true;
+      state.storageErrorShown = false;
+
+      const savedTime = new Intl.DateTimeFormat("en-US", {
+        hour: "numeric",
+        minute: "2-digit",
+      }).format(new Date());
+
+      updateSaveStatus(
+        "Saved in this browser",
+        `Private guest data · ${savedTime}`
+      );
+    } catch (error) {
+      state.storageAvailable = false;
+      updateSaveStatus(
+        "Browser saving failed",
+        "Changes may be lost after refresh"
+      );
+      console.warn("Could not save guest data", error);
+
+      if (!state.storageErrorShown) {
+        state.storageErrorShown = true;
+        showToast(
+          "This browser blocked local saving. Your current changes remain only for this page.",
+          true
+        );
+      }
+    }
   }
 
 
@@ -514,14 +742,38 @@
   }
 
   async function resetDataset() {
-    if (!confirm("Discard all temporary changes and restore the original public dataset?")) return;
-    const original = structuredCloneSafe(state.originalDataset || window.TRACKER_SEED_DATA);
+    if (
+      !confirm(
+        "Delete all personal browser-saved changes and restore the latest public dataset?"
+      )
+    ) return;
+
+    const storageCleared = clearGuestCustomizations();
+    const original = structuredCloneSafe(
+      state.originalDataset || window.TRACKER_SEED_DATA
+    );
+
     applyDataset(original);
-    clearFilters();
     populateFilterOptions();
+    clearFilters();
     render();
-    updateSaveStatus("Temporary session", "Original data restored");
-    showToast("Temporary changes were discarded.");
+
+    if (storageCleared) {
+      updateSaveStatus(
+        "Personal data reset",
+        "Latest public dataset restored"
+      );
+      showToast("Your browser-saved guest data was deleted.");
+    } else {
+      updateSaveStatus(
+        "Reset for this page",
+        "Browser storage could not be cleared"
+      );
+      showToast(
+        "The list was reset, but this browser did not allow saved data to be cleared.",
+        true
+      );
+    }
   }
 
   async function exportFilteredPdf() {

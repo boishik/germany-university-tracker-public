@@ -1,12 +1,12 @@
 "use strict";
 
 /*
- * Public GitHub version:
- * No offline cache is used because every refresh should load the original
- * published dataset and discard temporary browser-session changes.
+ * Guest-mode public version:
+ * Personal tracker changes are stored in localStorage by app.js.
  *
- * This file also removes older tracker service workers and caches if a
- * previous version of the project registered one.
+ * This service worker intentionally provides no offline application cache.
+ * It only removes older tracker service workers and caches so deployed HTML,
+ * CSS, JavaScript and public data updates are fetched normally.
  */
 
 self.addEventListener("install", () => {

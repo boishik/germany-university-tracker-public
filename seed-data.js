@@ -21,7 +21,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "-",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-weimar.de/en/civil-and-environmental-engineering/studies/master-degree-programmes/digital-engineering/"
     },
     {
       "id": "program-002",
@@ -40,7 +40,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "-",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-weimar.de/en/media/studies/human-computer-interaction-msc/"
     },
     {
       "id": "program-003",
@@ -59,7 +59,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "-",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.b-tu.de/en/artificial-intelligence-ms/page"
     },
     {
       "id": "program-004",
@@ -78,7 +78,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "218",
       "applicationFee": 100,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.datascience.nat.fau.eu/study/master-data-science-english/"
     },
     {
       "id": "program-005",
@@ -97,7 +97,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "-",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.hs-fulda.de/en/studyprogramme/global-software-development-msc"
     },
     {
       "id": "program-006",
@@ -116,7 +116,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "-",
       "applicationFee": 30,
       "restricted": "NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.h-brs.de/en/inf/study/master/autonomous-systems"
     },
     {
       "id": "program-007",
@@ -135,7 +135,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "-",
       "applicationFee": 0,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.hof-university.com/studying-at-hof-university/our-degree-programs/applied-research-in-computer-science-msc.html"
     },
     {
       "id": "program-008",
@@ -154,7 +154,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "-",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.hof-university.com/studying-at-hof-university/our-degree-programs/artificial-intelligence-and-robotics-msc.html"
     },
     {
       "id": "program-009",
@@ -173,7 +173,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "620",
       "applicationFee": null,
       "restricted": "-",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-kiel.de/en/centres/dsc/teaching"
     },
     {
       "id": "program-010",
@@ -192,7 +192,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "-",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.haw-kiel.de/en/degree-courses/courses/computer-science"
     },
     {
       "id": "program-011",
@@ -211,7 +211,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "-",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.haw-kiel.de/en/degree-courses/courses/data-science/"
     },
     {
       "id": "program-012",
@@ -230,7 +230,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "-",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.ikw.uni-osnabrueck.de/en/prospective_students/master_cognitive_science.html"
     },
     {
       "id": "program-013",
@@ -249,7 +249,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "646",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.ovgu.de/unimagdeburg/en/Study/Study%20Programmes/Master/Data%20and%20Knowledge%20Engineering-p-17625.html"
     },
     {
       "id": "program-014",
@@ -268,7 +268,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "1201-1400",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-paderborn.de/en/studyoffer/course_of_study/computer-science-master"
     },
     {
       "id": "program-015",
@@ -287,7 +287,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "951-1000",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-marburg.de/en/fb12/studying/degree-programs/m-sc-computer-science"
     },
     {
       "id": "program-016",
@@ -306,7 +306,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "951-1000",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-marburg.de/en/fb12/studying/degree-programs/m-sc-data-science"
     },
     {
       "id": "program-017",
@@ -325,7 +325,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "-",
       "applicationFee": 30,
       "restricted": "NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.hochschule-rhein-waal.de/en/faculties/communication-and-environment/degree-programmes/master-degree-programmes/information"
     },
     {
       "id": "program-018",
@@ -344,7 +344,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "1401+",
       "applicationFee": 60,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://rptu.de/studienangebot/22777/Computer_Science-Computer_Science-master"
     },
     {
       "id": "program-019",
@@ -363,7 +363,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "588",
       "applicationFee": 0,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-saarland.de/en/study/programmes/master/informatics.html"
     },
     {
       "id": "program-020",
@@ -382,7 +382,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "588",
       "applicationFee": 0,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-saarland.de/en/study/programmes/master/data-science.html"
     },
     {
       "id": "program-021",
@@ -401,7 +401,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "-",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.thws.de/en/studies-at-thws/application-enrolment-exams-internship/degree-programmes/artificial-intelligence/"
     },
     {
       "id": "program-022",
@@ -420,7 +420,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "158",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.tu.berlin/en/studying/study-programs/all-programs-offered/study-course/computer-science-informatik-m-sc"
     },
     {
       "id": "program-023",
@@ -439,7 +439,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "781-790",
       "applicationFee": 0,
       "restricted": "NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.tu-braunschweig.de/en/degree-programmes/data-science-master"
     },
     {
       "id": "program-024",
@@ -458,7 +458,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "1001-1200",
       "applicationFee": 49.95,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.tu-chemnitz.de/informatik/studium/studiengaenge/ma_automotive_software_engineering.php.en"
     },
     {
       "id": "program-025",
@@ -477,7 +477,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "-",
       "applicationFee": 0,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.studiengaenge.tu-clausthal.de/en/study-at-the-tu-clausthal/masters-programs/computer-science-master"
     },
     {
       "id": "program-026",
@@ -496,7 +496,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "250",
       "applicationFee": 0,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.tu-darmstadt.de/studieren/studieninteressierte/studienangebot_studiengaenge/studiengang_334592.en.jsp"
     },
     {
       "id": "program-027",
@@ -515,7 +515,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "250",
       "applicationFee": 0,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.tu-darmstadt.de/studieren/studieninteressierte/studienangebot_studiengaenge/studiengang_334656.en.jsp"
     },
     {
       "id": "program-028",
@@ -534,7 +534,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "691",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://statistik.tu-dortmund.de/en/studies/degrees/data-science-msc/"
     },
     {
       "id": "program-029",
@@ -553,7 +553,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "721-730",
       "applicationFee": 0,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.tuhh.de/tuhh/en/studying/before-studying/degree-courses/masters-programs/computer-science"
     },
     {
       "id": "program-030",
@@ -572,7 +572,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "-",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.tu-ilmenau.de/en/study/before-the-study/range-of-courses/master/data-science-msc"
     },
     {
       "id": "program-031",
@@ -591,7 +591,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "-",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.tu-ilmenau.de/en/study/before-the-study/range-of-courses/master/research-in-computer-systems-engineering-msc"
     },
     {
       "id": "program-032",
@@ -610,7 +610,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "1201-1400",
       "applicationFee": 60,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-bamberg.de/en/ma-isosysc/"
     },
     {
       "id": "program-033",
@@ -629,7 +629,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "472",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-bayreuth.de/en/master/computer-science"
     },
     {
       "id": "program-034",
@@ -648,7 +648,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "209",
       "applicationFee": 0,
       "restricted": "NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-bonn.de/en/studying/degree-programs/degree-programs-a-z/artificial-intelligence-msc"
     },
     {
       "id": "program-035",
@@ -667,7 +667,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "209",
       "applicationFee": 0,
       "restricted": "NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-bonn.de/en/studying/degree-programs/degree-programs-a-z/computer-science-msc"
     },
     {
       "id": "program-036",
@@ -686,7 +686,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "581",
       "applicationFee": 0,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-bremen.de/en/studies/orientation-application/offered-study-program/dbs/study/computer-science-master"
     },
     {
       "id": "program-037",
@@ -705,7 +705,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "261",
       "applicationFee": 0,
       "restricted": "NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-goettingen.de/en/642405.html"
     },
     {
       "id": "program-038",
@@ -724,7 +724,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "-",
       "applicationFee": 0,
       "restricted": "NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-hildesheim.de/en/studium/studieninteressierte/studiengaenge/masterstudium/data-analytics-msc/"
     },
     {
       "id": "program-039",
@@ -743,7 +743,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "-",
       "applicationFee": 0,
       "restricted": "NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-hildesheim.de/en/studium/studieninteressierte/studiengaenge/masterstudium/future-analytics-ai-audio-worlds-msc-or-ma/"
     },
     {
       "id": "program-040",
@@ -762,7 +762,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "-",
       "applicationFee": 0,
       "restricted": "NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-hildesheim.de/en/studium/studieninteressierte/studiengaenge/masterstudium/software-engineering-msc/"
     },
     {
       "id": "program-041",
@@ -781,7 +781,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "1201-1400",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-kassel.de/uni/en/studium/computer-science-master.html"
     },
     {
       "id": "program-042",
@@ -800,7 +800,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "-",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-koblenz.de/en/degree-programs/mathematical-modeling-msc"
     },
     {
       "id": "program-043",
@@ -819,7 +819,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "-",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www2.uni-luebeck.de/en/study-program/technology/robotics-and-autonomous-systems/masters-degree-program-robotics-and-autonomous-systems/"
     },
     {
       "id": "program-044",
@@ -838,7 +838,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "1201-1400",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-passau.de/en/msc-ai-eng/"
     },
     {
       "id": "program-045",
@@ -857,7 +857,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "1201-1400",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-passau.de/en/msc-computer-science/"
     },
     {
       "id": "program-046",
@@ -876,7 +876,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "500",
       "applicationFee": 30,
       "restricted": "NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-potsdam.de/en/studium/what-to-study/master/computer-science"
     },
     {
       "id": "program-047",
@@ -895,7 +895,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "696",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-regensburg.de/en/studies/prospective-students/study-programs/master/computer-science-msc"
     },
     {
       "id": "program-048",
@@ -914,7 +914,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "696",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-regensburg.de/en/studies/prospective-students/study-programs/master/data-science-msc"
     },
     {
       "id": "program-049",
@@ -933,7 +933,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "1201-1400",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-siegen.de/en/study/master/human-computer-interaction"
     },
     {
       "id": "program-050",
@@ -952,7 +952,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "1401+",
       "applicationFee": 0,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-trier.de/en/studium/studienangebot/studiengaenge-von-a-z/english-taught-masters-courses/data-science-master-of-science-1-subject-study-information-en"
     },
     {
       "id": "program-051",
@@ -971,7 +971,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "1401+",
       "applicationFee": 0,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-trier.de/en/studium/studienangebot/studiengaenge-von-a-z/english-taught-masters-courses/natural-language-processing-master-of-science-1-subject-study-information-en"
     },
     {
       "id": "program-052",
@@ -990,7 +990,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "430",
       "applicationFee": 30,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.informatik.uni-wuerzburg.de/en/studies/degree-programmes/master-computer-science/"
     },
     {
       "id": "program-053",
@@ -1009,7 +1009,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "-",
       "applicationFee": 60,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.th-deg.de/ai-m-en"
     },
     {
       "id": "program-054",
@@ -1028,7 +1028,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "-",
       "applicationFee": 60,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.th-deg.de/aid-m-en"
     },
     {
       "id": "program-055",
@@ -1047,7 +1047,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "-",
       "applicationFee": 30,
       "restricted": "NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.thi.de/en/electrical-engineering-and-information-technology/degree-programmes/ai-engineering-of-autonomous-systems-meng/"
     },
     {
       "id": "program-056",
@@ -1066,7 +1066,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "-",
       "applicationFee": 30,
       "restricted": "NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.thi.de/en/computer-science/degree-programmes/artificial-intelligence-msc/"
     },
     {
       "id": "program-057",
@@ -1085,7 +1085,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "86",
       "applicationFee": 0,
       "restricted": "NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-heidelberg.de/en/study/all-subjects/computer-science/data-and-computer-science-master"
     },
     {
       "id": "program-058",
@@ -1104,7 +1104,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "245",
       "applicationFee": 0,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.tf.uni-freiburg.de/en/study-programs/computer-science/m-sc-computer-science"
     },
     {
       "id": "program-059",
@@ -1123,7 +1123,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "425",
       "applicationFee": 0,
       "restricted": "NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-mannheim.de/en/academics/before-your-studies/programs/mannheim-master-in-data-science/"
     },
     {
       "id": "program-060",
@@ -1142,7 +1142,7 @@ window.TRACKER_SEED_DATA = {
       "qsRanking": "318",
       "applicationFee": 0,
       "restricted": "No-NC",
-      "applicationLink": ""
+      "applicationLink": "https://www.uni-stuttgart.de/en/study/study-programs/Computer-Science-M.Sc.-00001/"
     }
   ]
 };

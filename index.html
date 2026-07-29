@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#102a43">
   <meta name="description"
-    content="A public Germany university application tracker with temporary editing, filtering, sorting and filtered PDF export.">
+    content="A public Germany university application tracker with private browser-saved guest data, filtering, sorting and filtered PDF export.">
   <title>Germany University Application Tracker</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
@@ -21,14 +21,14 @@
       <div>
         <p class="eyebrow">Application workspace</p>
         <h1>Germany University Application Tracker</h1>
-        <p class="header-copy">Search, filter, sort and temporarily update programs. Export only the currently visible
-          results as a PDF.</p>
+        <p class="header-copy">Search, filter, sort and personalize programs. Guest changes are saved privately in
+          this browser, and PDF export uses only the currently visible results.</p>
       </div>
       <div class="save-panel" aria-live="polite">
         <span class="status-dot" aria-hidden="true"></span>
         <div>
           <strong id="saveStatus">Loading data…</strong>
-          <span id="fileStatus">Temporary session</span>
+          <span id="fileStatus">Guest mode</span>
         </div>
       </div>
     </div>
@@ -67,12 +67,15 @@
         <div class="action-bar">
           <button class="button button-primary" id="addProgramButton" type="button">+ Add program</button>
           <button class="button" id="exportButton" type="button">Download List</button>
-          <button class="button button-danger-quiet" id="resetDataButton" type="button">Reset temporary changes</button>
+          <button class="button button-danger-quiet" id="resetDataButton" type="button">Reset personal data</button>
         </div>
       </div>
 
-      <p class="session-note">Changes made here are temporary and reset when the page is refreshed. PDF export uses only
-        the currently visible filtered results.</p>
+      <p class="session-note"><strong>Guest mode:</strong> your Applied selections, edits, additions and deletions
+        are saved privately in this browser and survive refreshes. They are not shared with other visitors or written
+        to GitHub or Cloudflare. Clearing browser data, using private browsing, or opening the site in another
+        browser/device starts a separate guest profile. PDF export still uses only the currently visible filtered
+        results.</p>
 
       <div class="primary-controls">
         <label class="search-control">

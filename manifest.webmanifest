@@ -1,7 +1,7 @@
 {
   "name": "Germany University Application Tracker",
   "short_name": "Uni Tracker",
-  "description": "Public Germany university tracker with temporary editing, filtering, sorting and filtered PDF export.",
+  "description": "Public Germany university tracker with private browser-saved guest data, filtering, sorting and filtered PDF export.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
