@@ -1,1 +1,0 @@
-Keep your existing assets/icon.svg in this folder before deploying.
