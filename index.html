@@ -233,6 +233,26 @@
     </section>
   </main>
 
+
+  <div class="floating-help-stack" aria-label="Student help options">
+    <button class="shortlist-fab" id="shortlistHelpButton" type="button" aria-haspopup="dialog"
+      aria-controls="shortlistDialog">
+      <span class="shortlist-fab-icon" aria-hidden="true">★</span>
+      <span>Personalized Shortlist</span>
+    </button>
+
+    <button class="support-fab" id="supportUsButton" type="button" aria-haspopup="dialog" aria-controls="supportDialog">
+      <span class="support-fab-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" role="img" focusable="false">
+          <path
+            d="M12 21s-7.2-4.45-9.45-8.2C.65 9.63 2.12 5.5 5.9 5.08c2.15-.24 3.7.8 4.6 2.1.9-1.3 2.45-2.34 4.6-2.1 3.78.42 5.25 4.55 3.35 7.72C19.2 16.55 12 21 12 21Z" />
+          <path d="M8.4 11.4h7.2M12 8v6.8" class="support-fab-plus" />
+        </svg>
+      </span>
+      <span>Support Us</span>
+    </button>
+  </div>
+
   <footer class="site-footer">
     <p>© Maintained and Developed by Boishik Barua Tinu</p>
   </footer>
@@ -348,11 +368,182 @@
     </form>
   </dialog>
 
+
+
+  <dialog id="updateDialog" class="support-dialog update-dialog" aria-labelledby="updateDialogTitle"
+    aria-describedby="updateDialogDescription">
+    <div class="support-dialog-card update-dialog-card">
+      <div class="update-dialog-body">
+        <span class="update-badge">New Update</span>
+        <h2 id="updateDialogTitle">Need a personalized university list?</h2>
+        <p id="updateDialogDescription">If needed, you can get a personalized university shortlist based on your
+          subject, academic profile, transcript, bachelor’s courses and target.</p>
+
+        <div class="update-dialog-actions">
+          <button class="button update-continue-button" id="continueFreeListButton" type="button">Continue with Free
+            List</button>
+          <button class="button button-primary update-personalized-button" id="openPersonalizedFromUpdate"
+            type="button">Personalized Profile List</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+
+  <dialog id="supportDialog" class="support-dialog" aria-labelledby="supportDialogTitle"
+    aria-describedby="supportDialogDescription">
+    <div class="support-dialog-card">
+      <div class="support-dialog-header">
+        <div class="support-title-wrap">
+          <span class="support-title-icon" aria-hidden="true">৳</span>
+          <div>
+            <p class="eyebrow">Keep this project free</p>
+            <h2 id="supportDialogTitle">Support Us</h2>
+          </div>
+        </div>
+        <button class="icon-button" id="closeSupportDialogButton" type="button"
+          aria-label="Close support message">×</button>
+      </div>
+
+      <div class="support-intro">
+        <p id="supportDialogDescription"><strong>If this university list came to good use for you, a small support would
+            mean a lot to us.</strong> It encourages us to keep the tracker updated, improve it, and create more useful
+          resources for students.</p>
+        <p class="support-optional-note">Support is completely optional. You can close this message anytime and continue
+          using the tracker for free.</p>
+      </div>
+
+      <div class="support-payment-grid" aria-label="Support payment methods">
+        <section class="support-payment-card support-bkash">
+          <div class="payment-brand-row">
+            <span class="payment-logo payment-logo-bkash" aria-hidden="true">b</span>
+            <div>
+              <span class="payment-brand-name">bKash</span>
+              <small>Personal number</small>
+            </div>
+          </div>
+          <strong class="payment-number">01903696601</strong>
+          <button class="copy-payment-button" type="button" data-copy-value="01903696601"
+            data-copy-label="bKash number">Copy number</button>
+        </section>
+
+        <section class="support-payment-card support-nagad">
+          <div class="payment-brand-row">
+            <span class="payment-logo payment-logo-nagad" aria-hidden="true">N</span>
+            <div>
+              <span class="payment-brand-name">Nagad</span>
+              <small>Personal number</small>
+            </div>
+          </div>
+          <strong class="payment-number">01812499646</strong>
+          <button class="copy-payment-button" type="button" data-copy-value="01812499646"
+            data-copy-label="Nagad number">Copy number</button>
+        </section>
+      </div>
+
+      <section class="personalized-help-card">
+        <div class="personalized-help-heading">
+          <span class="personalized-help-icon" aria-hidden="true">★</span>
+          <div>
+            <h3>Need a personalized university shortlist?</h3>
+            <p>We can compare your academic profile, transcript, bachelor’s courses and target against suitable
+              programs. A detailed option is available for a very small support fee.</p>
+          </div>
+        </div>
+        <button class="button personalized-help-button" id="openShortlistFromSupport" type="button">View personalized
+          shortlisting</button>
+      </section>
+
+      <div class="support-dialog-actions">
+        <button class="button" id="closeSupportDialogBottom" type="button">Maybe later</button>
+      </div>
+    </div>
+  </dialog>
+
+
+  <dialog id="shortlistDialog" class="support-dialog shortlist-dialog" aria-labelledby="shortlistDialogTitle"
+    aria-describedby="shortlistDialogDescription">
+    <div class="support-dialog-card">
+      <div class="support-dialog-header shortlist-dialog-header">
+        <div class="support-title-wrap">
+          <span class="support-title-icon shortlist-title-icon" aria-hidden="true">★</span>
+          <div>
+            <p class="eyebrow">Profile-based guidance</p>
+            <h2 id="shortlistDialogTitle">Personalized University Shortlisting</h2>
+          </div>
+        </div>
+        <button class="icon-button" id="closeShortlistDialogButton" type="button"
+          aria-label="Close personalized shortlisting message">×</button>
+      </div>
+
+      <div class="shortlist-dialog-body">
+        <p id="shortlistDialogDescription" class="shortlist-lead"><strong>Send us your department name, academic profile
+            and target, and
+            we will help identify universities and programs that are a stronger match for you.</strong></p>
+
+        <div class="shortlist-info-grid">
+          <section class="shortlist-info-card">
+            <h3>What you can send</h3>
+            <ul>
+              <li>CV / academic profile</li>
+              <li>Transcript and grades</li>
+              <li>Bachelor’s course list or syllabus</li>
+              <li>IELTS / MOI / GRE details, if applicable</li>
+              <li>Target subject, intake, budget and preferences</li>
+              <li>Your own university list, if you already have one</li>
+            </ul>
+          </section>
+
+          <section class="shortlist-info-card">
+            <h3>What we will help with</h3>
+            <ul>
+              <li>Find relevant profile-matched programs</li>
+              <li>Compare major admission requirements</li>
+              <li>Highlight stronger, moderate and ambitious matches</li>
+              <li>Point out programs that may not fit your background</li>
+              <li>Help with related-subject university lists as well</li>
+            </ul>
+          </section>
+        </div>
+
+        <p class="shortlist-fee-note"><strong>Available for a very small support fee.</strong> Contact us first with
+          what you need and we will discuss the scope with you.</p>
+        <p class="shortlist-disclaimer">This is not an agency or admission consultancy service !!! The recommendations
+          are meant to help you identify suitable universities and save time during your research. Admission
+          is never guaranteed, and final eligibility always depends on the university’s official requirements and
+          decision.</p>
+
+        <div class="support-contact-links shortlist-contact-links">
+          <a class="support-contact-link whatsapp-link" href="https://wa.me/8801903696601" target="_blank"
+            rel="noopener noreferrer">
+            <span aria-hidden="true">WhatsApp</span>
+            <strong>01903696601</strong>
+          </a>
+          <a class="support-contact-link email-link" href="mailto:boishikbarua2000@gmail.com">
+            <span aria-hidden="true">Email</span>
+            <strong>boishikbarua2000@gmail.com</strong>
+          </a>
+          <a class="support-contact-link linkedin-link" href="https://www.linkedin.com/in/boishik-barua/"
+            target="_blank" rel="noopener noreferrer">
+            <span aria-hidden="true">LinkedIn</span>
+            <strong>Boishik Barua</strong>
+          </a>
+        </div>
+      </div>
+
+      <div class="support-dialog-actions">
+        <button class="button" id="closeShortlistDialogBottom" type="button">Close</button>
+      </div>
+    </div>
+  </dialog>
+
+
   <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="true"></div>
 
   <script src="seed-data.js"></script>
   <script src="filters.js"></script>
   <script src="app.js"></script>
+  <script src="support.js"></script>
   <!-- Cloudflare Web Analytics -->
   <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js'
     data-cf-beacon='{"token": "d1cc9fe3aeb4475698350ee0f2efc1c4"}'></script><!-- End Cloudflare Web Analytics -->
