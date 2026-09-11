@@ -1,6 +1,9 @@
 (function () {
     "use strict";
 
+    const ACTIVE_SUPPORT_DELAY_MS = 4 * 60 * 1000;
+    const ACTIVE_TICK_MS = 1000;
+
     document.addEventListener("DOMContentLoaded", initSupportFeature);
 
     function initSupportFeature() {
@@ -19,14 +22,18 @@
         const closeShortlistTopButton = document.getElementById("closeShortlistDialogButton");
         const closeShortlistBottomButton = document.getElementById("closeShortlistDialogBottom");
 
-        const programTable = document.getElementById("programTable");
         const exportButton = document.getElementById("exportButton");
         const toastRegion = document.getElementById("toastRegion");
 
         if (!supportDialog || !supportUsButton) return;
 
+        let activeVisibleMs = 0;
+        let timedSupportTriggered = false;
+        let lastTickAt = Date.now();
+
         supportUsButton.addEventListener("click", showSupportDialog);
         shortlistHelpButton?.addEventListener("click", showShortlistDialog);
+        document.addEventListener("tracker:show-support", showSupportDialog);
 
         openShortlistFromSupport?.addEventListener("click", () => {
             closeSupportDialog();
@@ -56,30 +63,53 @@
         window.setTimeout(showUpdateDialog, 300);
 
         /*
-         * When a university is marked as Applied,
-         * show the optional Support Us popup.
-         *
-         * app.js still handles saving the Applied state.
+         * Support reminder:
+         * Count only time while this page is visible. Applied checkbox changes
+         * intentionally do NOT trigger Support Us anymore.
          */
-        programTable?.addEventListener("change", (event) => {
-            const checkbox = event.target.closest(
-                '[data-action="toggle-applied"]'
-            );
-
-            if (checkbox?.checked) {
-                showSupportDialog();
-            }
+        window.setInterval(updateActiveSupportTimer, ACTIVE_TICK_MS);
+        document.addEventListener("visibilitychange", () => {
+            lastTickAt = Date.now();
         });
 
         /*
-         * Show Support Us when Download List is clicked.
-         * This does not stop or delay the existing PDF export.
+         * Keep the existing optional reminder on Download List.
+         * It does not stop or delay the PDF export.
          */
         exportButton?.addEventListener(
             "click",
             showSupportDialog,
             true
         );
+
+        function updateActiveSupportTimer() {
+            if (timedSupportTriggered) return;
+
+            const now = Date.now();
+            const elapsed = Math.min(now - lastTickAt, ACTIVE_TICK_MS * 2);
+            lastTickAt = now;
+
+            if (document.visibilityState !== "visible") return;
+
+            activeVisibleMs += Math.max(0, elapsed);
+
+            if (activeVisibleMs >= ACTIVE_SUPPORT_DELAY_MS) {
+                timedSupportTriggered = true;
+                showSupportWhenFree();
+            }
+        }
+
+        function showSupportWhenFree() {
+            const blockingDialog = Array.from(document.querySelectorAll("dialog[open]"))
+                .some((dialog) => dialog !== supportDialog);
+
+            if (blockingDialog) {
+                window.setTimeout(showSupportWhenFree, 1500);
+                return;
+            }
+
+            showSupportDialog();
+        }
 
         function showUpdateDialog() {
             if (!updateDialog) return;

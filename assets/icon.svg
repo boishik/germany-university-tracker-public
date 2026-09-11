@@ -1,7 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="University application tracker logo">
-  <rect width="512" height="512" rx="104" fill="#102a43"/>
-  <path d="M80 203 256 104l176 99-176 99L80 203Z" fill="#8fe3eb"/>
-  <path d="M128 239v100c0 42 58 76 128 76s128-34 128-76V239l-128 72-128-72Z" fill="#fff"/>
-  <path d="M421 224v113" fill="none" stroke="#8fe3eb" stroke-width="24" stroke-linecap="round"/>
-  <circle cx="421" cy="367" r="22" fill="#8fe3eb"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Germany University Tracker">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#102a43"/>
+      <stop offset="1" stop-color="#0b7285"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#g)"/>
+  <path fill="#fff" d="M64 24 20 45l44 21 36-17v31h8V45L64 24Zm-28 35v24c0 8 13 19 28 19s28-11 28-19V59L64 72 36 59Z"/>
 </svg>

@@ -253,6 +253,11 @@
     </button>
   </div>
 
+  <button class="feedback-fab" id="feedbackButton" type="button" aria-haspopup="dialog" aria-controls="feedbackDialog">
+    <span class="feedback-fab-icon" aria-hidden="true">✦</span>
+    <span>Feedback / Suggestions</span>
+  </button>
+
   <footer class="site-footer">
     <p>© Maintained and Developed by Boishik Barua Tinu</p>
   </footer>
@@ -538,12 +543,69 @@
   </dialog>
 
 
+  <dialog id="feedbackDialog" class="support-dialog feedback-dialog" aria-labelledby="feedbackDialogTitle"
+    aria-describedby="feedbackDialogDescription">
+    <div class="support-dialog-card feedback-dialog-card">
+      <div class="support-dialog-header feedback-dialog-header">
+        <div class="support-title-wrap">
+          <span class="support-title-icon feedback-title-icon" aria-hidden="true">✦</span>
+          <div>
+            <p class="eyebrow">Help us improve</p>
+            <h2 id="feedbackDialogTitle">Feedback &amp; Suggestions</h2>
+          </div>
+        </div>
+        <button class="icon-button" id="closeFeedbackDialogButton" type="button" aria-label="Close feedback">×</button>
+      </div>
+
+      <div class="feedback-dialog-body">
+        <p id="feedbackDialogDescription" class="feedback-lead"><strong>Collecting and keeping this information updated takes a lot of time. Your valuable feedback would mean a lot to us.</strong></p>
+
+        <section class="feedback-reviews-section" aria-labelledby="feedbackReviewsTitle">
+          <div class="feedback-section-heading">
+            <h3 id="feedbackReviewsTitle">What others said</h3>
+            <span id="feedbackReviewCount" class="feedback-review-count">0 reviews</span>
+          </div>
+          <div id="feedbackReviewsList" class="feedback-reviews-list" aria-live="polite">
+            <p class="feedback-empty">Loading reviews…</p>
+          </div>
+        </section>
+
+        <section class="feedback-form-section" aria-labelledby="feedbackFormTitle">
+          <h3 id="feedbackFormTitle">Leave your feedback</h3>
+          <form id="feedbackForm" novalidate>
+            <div class="feedback-name-row">
+              <label class="feedback-name-field">
+                <span>Your name</span>
+                <input id="feedbackName" name="name" maxlength="60" autocomplete="name" placeholder="Your name">
+              </label>
+              <label class="feedback-anonymous-field">
+                <input id="feedbackAnonymous" name="anonymous" type="checkbox">
+                <span>Post as Anonymous</span>
+              </label>
+            </div>
+            <label class="feedback-message-field">
+              <span>Feedback / suggestion *</span>
+              <textarea id="feedbackMessage" name="message" rows="4" maxlength="1000" required
+                placeholder="Tell us what was useful, what can be improved, or what you want us to add."></textarea>
+            </label>
+            <p class="feedback-form-note" id="feedbackFormNote">Please keep feedback respectful and avoid sharing sensitive personal information.</p>
+            <div class="feedback-submit-row">
+              <span class="feedback-status" id="feedbackStatus" aria-live="polite"></span>
+              <button class="button button-primary feedback-submit-button" id="feedbackSubmitButton" type="submit">Submit</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </dialog>
+
   <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="true"></div>
 
   <script src="seed-data.js"></script>
   <script src="filters.js"></script>
   <script src="app.js"></script>
   <script src="support.js"></script>
+  <script src="feedback.js"></script>
   <!-- Cloudflare Web Analytics -->
   <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js'
     data-cf-beacon='{"token": "d1cc9fe3aeb4475698350ee0f2efc1c4"}'></script><!-- End Cloudflare Web Analytics -->

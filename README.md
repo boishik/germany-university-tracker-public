@@ -37,3 +37,27 @@ This patch-based design means future updates to untouched public program fields 
 ## Important storage note
 
 `localStorage` is isolated by website origin. Data saved on a GitHub Pages URL does not automatically appear on a Cloudflare Pages URL or a custom domain, even in the same browser.
+
+## Feedback / Suggestions feature
+
+The updated project adds a bottom-right **Feedback / Suggestions** button. Visitors can read existing reviews, post with a name or as Anonymous, and after a successful submission the button changes to **Thank you :,)** before the Support Us dialog opens.
+
+### Shared reviews vs. static GitHub Pages
+
+A browser cannot securely write directly into a GitHub repository file. For that reason, the project includes `functions/api/feedback.js`, a Cloudflare Pages Function that safely updates `reviews.json` through the GitHub Contents API while keeping the GitHub token on the server.
+
+For real shared reviews, deploy the repository with Cloudflare Pages Functions and set these environment variables in the Cloudflare Pages project:
+
+- `GITHUB_OWNER` — GitHub account/organization that owns the repository
+- `GITHUB_REPO` — repository name
+- `GITHUB_BRANCH` — branch to update, normally `main`
+- `GITHUB_TOKEN` — fine-grained GitHub token with **Contents: Read and write** permission for only this repository
+- Optional: `GITHUB_REVIEWS_PATH` — defaults to `reviews.json`
+
+Do **not** put the token in `feedback.js`, HTML, or any public file.
+
+If `/api/feedback` is unavailable (for example on plain GitHub Pages or local `python -m http.server`), existing public entries from `reviews.json` still load and new submissions are saved only in that visitor's browser as a safe fallback.
+
+### Updated support timing
+
+Marking a university as **Applied** no longer opens Support Us. The Support Us reminder now appears after about four minutes while the page is actively visible. The existing manual Support Us button and Download List reminder remain available.
